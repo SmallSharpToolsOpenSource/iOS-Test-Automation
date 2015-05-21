@@ -26,6 +26,12 @@ typedef NS_ENUM(NSUInteger, AnimationDelayType) {
     AnimationDelayTypeUIView = 2
 };
 
+CG_INLINE UINavigationController *GetNavigationController()
+{
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    return (UINavigationController *)appDelegate.window.rootViewController;
+}
+
 @interface NavigationTests : XCTestCase
 
 @property (assign) AnimationDelayType animationDelayType;
@@ -38,11 +44,7 @@ typedef NS_ENUM(NSUInteger, AnimationDelayType) {
     UINavigationController *_nvc;
 }
 
-CG_INLINE UINavigationController *GetNavigationController()
-{
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    return (UINavigationController *)appDelegate.window.rootViewController;
-}
+#pragma mark -
 
 - (void)setUp {
     [super setUp];
@@ -65,19 +67,7 @@ CG_INLINE UINavigationController *GetNavigationController()
     [super tearDown];
 }
 
-/*
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait to Pop"];
-
-    [self popToHomeWithCompletionBlock:^{
-        [expectation fulfill];
-    }];
-
-     [self waitForExpectationsWithTimeout:kExpectationTimeout handler:^(NSError *error) {
-         if (error) {
-             NSLog(@"Error: %@", error);
-         }
-    }];
- */
+#pragma mark -
 
 - (void)testRootViewController {
     NSLog(@"### %@", NSStringFromSelector(_cmd));
@@ -211,6 +201,22 @@ CG_INLINE UINavigationController *GetNavigationController()
     XCTAssert([view isKindOfClass:[UIButton class]], @"Pass");
 }
 
+#pragma mark -
+
+/*
+ XCTestExpectation *expectation = [self expectationWithDescription:@"Wait to Pop"];
+ 
+ [self popToHomeWithCompletionBlock:^{
+ [expectation fulfill];
+ }];
+ 
+ [self waitForExpectationsWithTimeout:kExpectationTimeout handler:^(NSError *error) {
+ if (error) {
+ NSLog(@"Error: %@", error);
+ }
+ }];
+ */
+
 #pragma mark - Pop To Home
 #pragma mark -
 
@@ -244,6 +250,9 @@ CG_INLINE UINavigationController *GetNavigationController()
         });
     }
 }
+
+#pragma mark - Perform Segue
+#pragma mark -
 
 - (void)performSegueWithIdentifier:(NSString *)identifier viewController:(UIViewController *)vc withCompletionBlock:(void (^)())completionBlock {
     if (!completionBlock) {
