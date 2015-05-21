@@ -18,6 +18,14 @@ method through the base view controller and only perform the segue when
 it is defined. Now when the test runs are much faster and a larger test
 suite will be able to run in much less time.
 
+### UI Automation with Xcode and Instruments
+
+The tool included with Xcode called Instruments allows for a range of
+automation features with UI Automation. One feature is to use a JavaScript-like
+language to script automated tests. The Navigation project has test scripts
+which allow for UI testing to be automated and run from the command line.
+See `run-ui-tests.sh` for details.
+
 # License
 
 MIT
