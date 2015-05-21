@@ -4,6 +4,10 @@ This repository will include experiments in test automation for iOS.
 
 ## Navigation
 
+The Navigation project is a sample iOS app which uses storyboards and
+segues to navigate to the 2 sub views. It is used to demonstrate how
+test automation can work with segues and storyboards.
+
 Automating tests for the UI with view controllers, storyboards and segues
 can be a challenge because there are not completion blocked triggered when
 animations for pushing and popping items on a navigation controller stack
