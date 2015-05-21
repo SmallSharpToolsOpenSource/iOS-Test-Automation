@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString * const HomeViewControllerDidAppearNotification;
+#import "BaseViewController.h"
 
-@interface HomeViewController : UIViewController
-
+@interface HomeViewController : BaseViewController
 
 @end
-

@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "BaseViewController.h"
+
 extern NSInteger const TwoButtonTag;
 
-@interface TwoViewController : UIViewController
+@interface TwoViewController : BaseViewController
 
 @end

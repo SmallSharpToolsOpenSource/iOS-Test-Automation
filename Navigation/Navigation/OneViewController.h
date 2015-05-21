@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "BaseViewController.h"
+
 NSInteger const OneButtonTag = 1001;
 
-@interface OneViewController : UIViewController
+@interface OneViewController : BaseViewController
 
 @end

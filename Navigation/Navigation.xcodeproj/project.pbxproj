@@ -16,7 +16,8 @@
 		2631EE3A1B0D00E10067F921 /* NavigationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2631EE391B0D00E10067F921 /* NavigationTests.m */; };
 		2631EE451B0D36310067F921 /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2631EE441B0D36310067F921 /* OneViewController.m */; };
 		2631EE481B0D363F0067F921 /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2631EE471B0D363F0067F921 /* TwoViewController.m */; };
-		2631EE4E1B0D5E8B0067F921 /* AnimationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2631EE4D1B0D5E8B0067F921 /* AnimationDelegate.m */; };
+		26FF70971B0DCA50006B602F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FF70961B0DCA50006B602F /* BaseViewController.m */; };
+		26FF709A1B0DCA6A006B602F /* UIViewController+Testing.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FF70991B0DCA6A006B602F /* UIViewController+Testing.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,8 +48,10 @@
 		2631EE441B0D36310067F921 /* OneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
 		2631EE461B0D363F0067F921 /* TwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoViewController.h; sourceTree = "<group>"; };
 		2631EE471B0D363F0067F921 /* TwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoViewController.m; sourceTree = "<group>"; };
-		2631EE4C1B0D5E8B0067F921 /* AnimationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationDelegate.h; sourceTree = "<group>"; };
-		2631EE4D1B0D5E8B0067F921 /* AnimationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationDelegate.m; sourceTree = "<group>"; };
+		26FF70951B0DCA50006B602F /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		26FF70961B0DCA50006B602F /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		26FF70981B0DCA6A006B602F /* UIViewController+Testing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Testing.h"; sourceTree = "<group>"; };
+		26FF70991B0DCA6A006B602F /* UIViewController+Testing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Testing.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +97,8 @@
 				2631EE221B0D00E10067F921 /* AppDelegate.m */,
 				2631EE271B0D00E10067F921 /* Main.storyboard */,
 				2631EE2C1B0D00E10067F921 /* LaunchScreen.xib */,
+				26FF70951B0DCA50006B602F /* BaseViewController.h */,
+				26FF70961B0DCA50006B602F /* BaseViewController.m */,
 				2631EE241B0D00E10067F921 /* HomeViewController.h */,
 				2631EE251B0D00E10067F921 /* HomeViewController.m */,
 				2631EE431B0D36310067F921 /* OneViewController.h */,
@@ -120,8 +125,8 @@
 			children = (
 				2631EE371B0D00E10067F921 /* Supporting Files */,
 				2631EE391B0D00E10067F921 /* NavigationTests.m */,
-				2631EE4C1B0D5E8B0067F921 /* AnimationDelegate.h */,
-				2631EE4D1B0D5E8B0067F921 /* AnimationDelegate.m */,
+				26FF70981B0DCA6A006B602F /* UIViewController+Testing.h */,
+				26FF70991B0DCA6A006B602F /* UIViewController+Testing.m */,
 			);
 			path = NavigationTests;
 			sourceTree = "<group>";
@@ -235,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2631EE261B0D00E10067F921 /* HomeViewController.m in Sources */,
+				26FF70971B0DCA50006B602F /* BaseViewController.m in Sources */,
 				2631EE231B0D00E10067F921 /* AppDelegate.m in Sources */,
 				2631EE201B0D00E10067F921 /* main.m in Sources */,
 				2631EE481B0D363F0067F921 /* TwoViewController.m in Sources */,
@@ -246,8 +252,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26FF709A1B0DCA6A006B602F /* UIViewController+Testing.m in Sources */,
 				2631EE3A1B0D00E10067F921 /* NavigationTests.m in Sources */,
-				2631EE4E1B0D5E8B0067F921 /* AnimationDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

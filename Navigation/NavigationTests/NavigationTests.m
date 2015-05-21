@@ -9,22 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-#import "AnimationDelegate.h"
-
 #import "AppDelegate.h"
 #import "HomeViewController.h"
 #import "OneViewController.h"
 #import "TwoViewController.h"
 
+#import "UIViewController+Testing.h"
+
 #define kExpectationTimeout 5.0
 #define kAnimationDuration 2.0
-#define kAnimationDelayType AnimationDelayTypeDefault
-
-typedef NS_ENUM(NSUInteger, AnimationDelayType) {
-    AnimationDelayTypeDefault = 0,
-    AnimationDelayTypeCAAnimation = 1,
-    AnimationDelayTypeUIView = 2
-};
 
 CG_INLINE UINavigationController *GetNavigationController()
 {
@@ -33,10 +26,6 @@ CG_INLINE UINavigationController *GetNavigationController()
 }
 
 @interface NavigationTests : XCTestCase
-
-@property (assign) AnimationDelayType animationDelayType;
-
-@property (strong, nonatomic) AnimationDelegate *animationDelegate;
 
 @end
 
@@ -51,8 +40,6 @@ CG_INLINE UINavigationController *GetNavigationController()
     
     // Note: setup code should run after call to super
     
-    self.animationDelayType = kAnimationDelayType;
-    
     if (!_nvc) {
         _nvc = GetNavigationController();
     }
@@ -62,32 +49,23 @@ CG_INLINE UINavigationController *GetNavigationController()
     
     // Note: teardown code should run before call to super
     
-    self.animationDelegate = nil;
-    
     [super tearDown];
 }
 
 #pragma mark -
 
 - (void)testRootViewController {
-    NSLog(@"### %@", NSStringFromSelector(_cmd));
-    
     XCTAssert(_nvc != nil, @"Pass");
     XCTAssert([_nvc isKindOfClass:[UINavigationController class]], @"Pass");
 }
 
 - (void)testTopViewController {
-    NSLog(@"### %@", NSStringFromSelector(_cmd));
-    
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait to Pop"];
-    NSLog(@"### top: %@", NSStringFromClass([_nvc.topViewController class]));
     
-    [self popToHomeWithCompletionBlock:^{
-        NSLog(@"Popped to Home VC");
-        NSLog(@"### top: %@", NSStringFromClass([_nvc.topViewController class]));
-
+    [_nvc popToRootViewControllerAnimated:YES];
+    
+    [self watchForViewControllerAppearing:NSStringFromClass([HomeViewController class]) withCompletionBlock:^{
         XCTAssert([_nvc.topViewController isKindOfClass:[HomeViewController class]], @"Pass");
-        
         [expectation fulfill];
     }];
     
@@ -99,24 +77,17 @@ CG_INLINE UINavigationController *GetNavigationController()
 }
 
 - (void)testHomeToOneSegue {
-    NSLog(@"### %@", NSStringFromSelector(_cmd));
-    
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait to Pop"];
     
-    [self popToHomeWithCompletionBlock:^{
-        NSLog(@"Popped to Home VC");
-        
+    [_nvc popToRootViewControllerAnimated:YES];
+    [self watchForViewControllerAppearing:NSStringFromClass([HomeViewController class]) withCompletionBlock:^{
         UIViewController *vc = _nvc.topViewController;
         
         XCTAssert([_nvc.topViewController isKindOfClass:[HomeViewController class]], @"Pass");
         
-        NSLog(@"### top: %@ (before)", NSStringFromClass([_nvc.topViewController class]));
-        
         if ([_nvc.topViewController isKindOfClass:[HomeViewController class]]) {
-            // perform segue to navigate to one vc
-            [self performSegueWithIdentifier:@"HomeToOne" viewController:vc withCompletionBlock:^{
-                NSLog(@"### top: %@ (after)", NSStringFromClass([_nvc.topViewController class]));
-                
+            [vc performSegueWithIdentifier:@"HomeToOne" sender:vc];
+            [self watchForViewControllerAppearing:NSStringFromClass([OneViewController class]) withCompletionBlock:^{
                 UIViewController *topVC = _nvc.topViewController;
                 
                 XCTAssert([topVC isKindOfClass:[OneViewController class]], @"Pass");
@@ -141,22 +112,20 @@ CG_INLINE UINavigationController *GetNavigationController()
 }
 
 - (void)testHomeToTwoSegue {
-    NSLog(@"### %@", NSStringFromSelector(_cmd));
-    
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait to Pop"];
     
-    [self popToHomeWithCompletionBlock:^{
-        NSLog(@"### top: %@ (before)", NSStringFromClass([_nvc.topViewController class]));
+    [_nvc popToRootViewControllerAnimated:YES];
+    [self watchForViewControllerAppearing:NSStringFromClass([HomeViewController class]) withCompletionBlock:^{
         
         UIViewController *vc = _nvc.topViewController;
         
         XCTAssert([_nvc.topViewController isKindOfClass:[HomeViewController class]], @"Pass");
-
+        
         if ([_nvc.topViewController isKindOfClass:[HomeViewController class]]) {
             // perform segue to navigate to two vc
-            [self performSegueWithIdentifier:@"HomeToTwo" viewController:vc withCompletionBlock:^{
-                NSLog(@"### top: %@ (after)", NSStringFromClass([_nvc.topViewController class]));
-                
+            
+            [vc performSegueWithIdentifier:@"HomeToTwo" sender:vc];
+            [self watchForViewControllerAppearing:NSStringFromClass([TwoViewController class]) withCompletionBlock:^{
                 UIViewController *topVC = _nvc.topViewController;
                 
                 XCTAssert([topVC isKindOfClass:[TwoViewController class]], @"Pass");
@@ -201,88 +170,36 @@ CG_INLINE UINavigationController *GetNavigationController()
     XCTAssert([view isKindOfClass:[UIButton class]], @"Pass");
 }
 
+#pragma mark - Wait for View Controller
 #pragma mark -
 
-/*
- XCTestExpectation *expectation = [self expectationWithDescription:@"Wait to Pop"];
- 
- [self popToHomeWithCompletionBlock:^{
- [expectation fulfill];
- }];
- 
- [self waitForExpectationsWithTimeout:kExpectationTimeout handler:^(NSError *error) {
- if (error) {
- NSLog(@"Error: %@", error);
- }
- }];
- */
-
-#pragma mark - Pop To Home
-#pragma mark -
-
-- (void)popToHomeWithCompletionBlock:(void (^)())completionBlock {
+- (void)watchForViewControllerAppearing:(NSString *)className withCompletionBlock:(void (^)())completionBlock {
     if (!completionBlock) {
         // do nothing
         return;
     }
     
-    if (self.animationDelayType == AnimationDelayTypeCAAnimation) {
-        [CATransaction begin];
-        [CATransaction setAnimationDuration:kAnimationDuration];
-        [CATransaction setCompletionBlock:completionBlock];
-        [_nvc popToRootViewControllerAnimated:YES];
-        [CATransaction commit];
-    }
-    else if (self.animationDelayType == AnimationDelayTypeUIView) {
-        AnimationDelegate *animationDelegate = [[AnimationDelegate alloc] init];
-        animationDelegate.completionBlock = completionBlock;
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:kAnimationDuration];
-        [UIView setAnimationDelegate:animationDelegate];
-        [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
-        [_nvc popToRootViewControllerAnimated:YES];
-        [UIView commitAnimations];
+    if ([className isEqualToString:NSStringFromClass([_nvc.topViewController class])]) {
+        // the vc has already appeared
+        completionBlock();
     }
     else {
-        [_nvc popToRootViewControllerAnimated:YES];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            completionBlock();
-        });
-    }
-}
-
-#pragma mark - Perform Segue
-#pragma mark -
-
-- (void)performSegueWithIdentifier:(NSString *)identifier viewController:(UIViewController *)vc withCompletionBlock:(void (^)())completionBlock {
-    if (!completionBlock) {
-        // do nothing
-        return;
-    }
-    
-    if (self.animationDelayType == AnimationDelayTypeCAAnimation) {
-        [CATransaction begin];
-        [CATransaction setAnimationDuration:kAnimationDuration];
-        [CATransaction setCompletionBlock:completionBlock];
-        [vc performSegueWithIdentifier:identifier sender:vc];
-        [CATransaction commit];
-    }
-    else if (self.animationDelayType == AnimationDelayTypeUIView) {
-        AnimationDelegate *animationDelegate = [[AnimationDelegate alloc] init];
-        animationDelegate.completionBlock = completionBlock;
-        self.animationDelegate = animationDelegate; // hold onto the delegate (strong)
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:kAnimationDuration];
-        [UIView setAnimationDelegate:animationDelegate];
-        [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
-        [vc performSegueWithIdentifier:identifier sender:vc];
-        [UIView commitAnimations];
-    }
-    else {
-        [vc performSegueWithIdentifier:identifier sender:vc];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            completionBlock();
-        });
+        id blockObserver;
+        void (^notificationBlock)(NSNotification *notification) =  ^void (NSNotification *notification) {
+            
+            if ([className isEqualToString:notification.userInfo[ViewDidAppearNotificationKey]]) {
+                completionBlock();
+                
+                [[NSNotificationCenter defaultCenter] removeObserver:blockObserver
+                                                                name:ViewDidAppearNotificationName
+                                                              object:nil];
+            }
+            
+        };
+        blockObserver = [[NSNotificationCenter defaultCenter] addObserverForName:ViewDidAppearNotificationName
+                                                                          object:nil
+                                                                           queue:[NSOperationQueue mainQueue]
+                                                                      usingBlock:notificationBlock];
     }
 }
 
