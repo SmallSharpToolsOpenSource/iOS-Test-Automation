@@ -18,7 +18,7 @@ RESULTS_PATH=./tests
 TRACES_PATH=./test-traces
 
 # iPhone 6 (8.3 Simulator)
-DEVICE_ID=CB099A4E-B2C1-43FD-9752-01B9E4401F0C
+DEVICE_ID=`instruments -s devices |grep -i "iphone 6 (" | sed 's/.*\[//' | sed 's/\]//'`
 
 # add -v to make output verbose
 instruments -w $DEVICE_ID -D $TRACES_PATH -t $TEMPLATE $APP -e UIASCRIPT $SCRIPT -e UIARESULTSPATH $RESULTS_PATH
