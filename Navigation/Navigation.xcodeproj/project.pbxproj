@@ -179,7 +179,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0630;
-				ORGANIZATIONNAME = Striiv;
+				ORGANIZATIONNAME = Acme;
 				TargetAttributes = {
 					2631EE191B0D00E10067F921 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -434,6 +434,7 @@
 				2631EE3F1B0D00E10067F921 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2631EE401B0D00E10067F921 /* Build configuration list for PBXNativeTarget "NavigationTests" */ = {
 			isa = XCConfigurationList;
@@ -442,6 +443,7 @@
 				2631EE421B0D00E10067F921 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
