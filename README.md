@@ -26,6 +26,27 @@ language to script automated tests. The Navigation project has test scripts
 which allow for UI testing to be automated and run from the command line.
 See `run-ui-tests.sh` for details.
 
+Test scripts with UI Automation allow for interacting with the UI of an app.
+It may not be sufficient to test every aspect of your app. Combining tests
+run in Xcode and via scripts with Instruments may be your best option.
+
+To keep the test scripts managable they can use an `#import` directive which
+is not a standard JavaScript language feature. In this sample projects there
+are two external scripts which are imported which define a function which
+take the necessary variables needed to run their tests. This way tests can
+be isolated and a single script file does not get so big it becomes 
+cumbersome to maintain.
+
+For a much more complex application it would be helpful to script various
+workflows as separate test scripts such as logging in, posting content,
+updating user settings or commenting on a post.
+
+* [UI Automation Reference](https://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/UIAutomationRef/index.html)
+* [UIATarget](https://developer.apple.com/library/ios/documentation/ToolsLanguages/Reference/UIATargetClassReference/index.html)
+* [UIAApplication](https://developer.apple.com/library/ios/documentation/ToolsLanguages/Reference/UIAApplicationClassReference/index.html)
+* [UIANavigationBar](https://developer.apple.com/library/ios/documentation/ToolsLanguages/Reference/UIANavigationBarClassReference/index.html)
+* [UIALogger Reference](https://developer.apple.com/library/ios/documentation/ToolsLanguages/Reference/UIALoggerClassReference/index.html)
+
 # License
 
 MIT
