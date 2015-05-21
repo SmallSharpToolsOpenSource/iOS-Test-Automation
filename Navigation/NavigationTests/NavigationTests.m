@@ -62,7 +62,7 @@ CG_INLINE UINavigationController *GetNavigationController()
 - (void)testTopViewController {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait to Pop"];
     
-    [_nvc popToRootViewControllerAnimated:YES];
+    [_nvc popToRootViewControllerAnimated:NO];
     
     [self watchForViewControllerAppearing:NSStringFromClass([HomeViewController class]) withCompletionBlock:^{
         XCTAssert([_nvc.topViewController isKindOfClass:[HomeViewController class]], @"Pass");
@@ -79,7 +79,7 @@ CG_INLINE UINavigationController *GetNavigationController()
 - (void)testHomeToOneSegue {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait to Pop"];
     
-    [_nvc popToRootViewControllerAnimated:YES];
+    [_nvc popToRootViewControllerAnimated:NO];
     [self watchForViewControllerAppearing:NSStringFromClass([HomeViewController class]) withCompletionBlock:^{
         UIViewController *vc = _nvc.topViewController;
         
@@ -114,7 +114,7 @@ CG_INLINE UINavigationController *GetNavigationController()
 - (void)testHomeToTwoSegue {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait to Pop"];
     
-    [_nvc popToRootViewControllerAnimated:YES];
+    [_nvc popToRootViewControllerAnimated:NO];
     [self watchForViewControllerAppearing:NSStringFromClass([HomeViewController class]) withCompletionBlock:^{
         
         UIViewController *vc = _nvc.topViewController;
