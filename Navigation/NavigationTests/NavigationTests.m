@@ -64,7 +64,7 @@ CG_INLINE UINavigationController *GetNavigationController()
     
     [_nvc popToRootViewControllerAnimated:NO];
     
-    [self watchForViewControllerAppearing:NSStringFromClass([HomeViewController class]) withCompletionBlock:^{
+    [self watchForViewControllerAppearing:[HomeViewController class] withCompletionBlock:^{
         XCTAssert([_nvc.topViewController isKindOfClass:[HomeViewController class]], @"Pass");
         [expectation fulfill];
     }];
@@ -80,14 +80,14 @@ CG_INLINE UINavigationController *GetNavigationController()
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait to Pop"];
     
     [_nvc popToRootViewControllerAnimated:NO];
-    [self watchForViewControllerAppearing:NSStringFromClass([HomeViewController class]) withCompletionBlock:^{
+    [self watchForViewControllerAppearing:[HomeViewController class] withCompletionBlock:^{
         UIViewController *vc = _nvc.topViewController;
         
         XCTAssert([_nvc.topViewController isKindOfClass:[HomeViewController class]], @"Pass");
         
         if ([_nvc.topViewController isKindOfClass:[HomeViewController class]]) {
             [vc performSegueWithIdentifier:@"HomeToOne" sender:vc];
-            [self watchForViewControllerAppearing:NSStringFromClass([OneViewController class]) withCompletionBlock:^{
+            [self watchForViewControllerAppearing:[OneViewController class] withCompletionBlock:^{
                 UIViewController *topVC = _nvc.topViewController;
                 
                 XCTAssert([topVC isKindOfClass:[OneViewController class]], @"Pass");
@@ -115,7 +115,7 @@ CG_INLINE UINavigationController *GetNavigationController()
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait to Pop"];
     
     [_nvc popToRootViewControllerAnimated:NO];
-    [self watchForViewControllerAppearing:NSStringFromClass([HomeViewController class]) withCompletionBlock:^{
+    [self watchForViewControllerAppearing:[HomeViewController class] withCompletionBlock:^{
         
         UIViewController *vc = _nvc.topViewController;
         
@@ -125,7 +125,7 @@ CG_INLINE UINavigationController *GetNavigationController()
             // perform segue to navigate to two vc
             
             [vc performSegueWithIdentifier:@"HomeToTwo" sender:vc];
-            [self watchForViewControllerAppearing:NSStringFromClass([TwoViewController class]) withCompletionBlock:^{
+            [self watchForViewControllerAppearing:[TwoViewController class] withCompletionBlock:^{
                 UIViewController *topVC = _nvc.topViewController;
                 
                 XCTAssert([topVC isKindOfClass:[TwoViewController class]], @"Pass");
@@ -173,11 +173,13 @@ CG_INLINE UINavigationController *GetNavigationController()
 #pragma mark - Wait for View Controller
 #pragma mark -
 
-- (void)watchForViewControllerAppearing:(NSString *)className withCompletionBlock:(void (^)())completionBlock {
+- (void)watchForViewControllerAppearing:(Class)class withCompletionBlock:(void (^)())completionBlock {
     if (!completionBlock) {
         // do nothing
         return;
     }
+    
+    NSString *className = NSStringFromClass(class);
     
     if ([className isEqualToString:NSStringFromClass([_nvc.topViewController class])]) {
         // the vc has already appeared
