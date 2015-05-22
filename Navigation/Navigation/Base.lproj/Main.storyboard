@@ -76,7 +76,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WF2-Rz-0AJ">
-                                <rect key="frame" x="267" y="285" width="66" height="30"/>
+                                <rect key="frame" x="267" y="554" width="66" height="30"/>
                                 <state key="normal" title="Go Home">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -84,11 +84,18 @@
                                     <segue destination="W9s-EO-6kG" kind="unwind" identifier="OneToHome" unwindAction="returnHome:" id="c8Q-nH-7ZJ"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" image="funnycat.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="0Qb-c8-8SP">
+                                <rect key="frame" x="16" y="80" width="568" height="458"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="WF2-Rz-0AJ" secondAttribute="centerY" id="LVC-po-OSN"/>
-                            <constraint firstAttribute="centerX" secondItem="WF2-Rz-0AJ" secondAttribute="centerX" id="ddY-PO-Ebs"/>
+                            <constraint firstAttribute="trailing" secondItem="0Qb-c8-8SP" secondAttribute="trailing" constant="16" id="CuP-Bb-f8J"/>
+                            <constraint firstItem="WF2-Rz-0AJ" firstAttribute="top" secondItem="0Qb-c8-8SP" secondAttribute="bottom" constant="16" id="QW5-qK-KEY"/>
+                            <constraint firstAttribute="centerX" secondItem="WF2-Rz-0AJ" secondAttribute="centerX" id="ajv-TF-6f5"/>
+                            <constraint firstItem="0Qb-c8-8SP" firstAttribute="leading" secondItem="4sx-GD-jEf" secondAttribute="leading" constant="16" id="c55-1n-Keo"/>
+                            <constraint firstItem="0Qb-c8-8SP" firstAttribute="top" secondItem="OKe-lZ-YTv" secondAttribute="bottom" constant="16" id="fv1-js-C1D"/>
+                            <constraint firstItem="eBf-1F-vFQ" firstAttribute="top" secondItem="WF2-Rz-0AJ" secondAttribute="bottom" constant="16" id="m2t-mp-jfD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="One" id="eQI-Ul-d4V"/>
@@ -114,7 +121,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lU5-0c-tvb">
-                                <rect key="frame" x="267" y="285" width="66" height="30"/>
+                                <rect key="frame" x="267" y="554" width="66" height="30"/>
                                 <state key="normal" title="Go Home">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -122,10 +129,17 @@
                                     <segue destination="uQ4-L2-b1R" kind="unwind" identifier="TwoToHome" unwindAction="returnHome:" id="ujc-YM-MLi"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" image="funnydog.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="NBE-vi-pnX">
+                                <rect key="frame" x="16" y="80" width="568" height="458"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="lU5-0c-tvb" secondAttribute="centerY" id="JDl-PK-8x8"/>
+                            <constraint firstItem="NBE-vi-pnX" firstAttribute="leading" secondItem="CyR-CG-DES" secondAttribute="leading" constant="16" id="0cY-lj-Uz5"/>
+                            <constraint firstItem="IKG-Ap-xwd" firstAttribute="top" secondItem="lU5-0c-tvb" secondAttribute="bottom" constant="16" id="99L-xa-fUp"/>
+                            <constraint firstAttribute="trailing" secondItem="NBE-vi-pnX" secondAttribute="trailing" constant="16" id="ASV-SM-Ju3"/>
+                            <constraint firstItem="NBE-vi-pnX" firstAttribute="top" secondItem="BbK-wN-6Jx" secondAttribute="bottom" constant="16" id="T4t-Y5-nQw"/>
+                            <constraint firstItem="lU5-0c-tvb" firstAttribute="top" secondItem="NBE-vi-pnX" secondAttribute="bottom" constant="16" id="hVQ-9Y-y1S"/>
                             <constraint firstAttribute="centerX" secondItem="lU5-0c-tvb" secondAttribute="centerX" id="kz0-ux-kzt"/>
                         </constraints>
                     </view>
@@ -158,4 +172,8 @@
             <point key="canvasLocation" x="408" y="429"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="funnycat.jpg" width="1200" height="804"/>
+        <image name="funnydog.jpg" width="1536" height="2048"/>
+    </resources>
 </document>
