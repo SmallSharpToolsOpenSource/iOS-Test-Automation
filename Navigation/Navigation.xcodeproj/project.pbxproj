@@ -16,6 +16,8 @@
 		2631EE3A1B0D00E10067F921 /* NavigationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2631EE391B0D00E10067F921 /* NavigationTests.m */; };
 		2631EE451B0D36310067F921 /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2631EE441B0D36310067F921 /* OneViewController.m */; };
 		2631EE481B0D363F0067F921 /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2631EE471B0D363F0067F921 /* TwoViewController.m */; };
+		26635BD91B0FB54200884CFF /* funnydog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 26635BD71B0FB54200884CFF /* funnydog.jpg */; };
+		26635BDA1B0FB54200884CFF /* funnycat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 26635BD81B0FB54200884CFF /* funnycat.jpg */; };
 		26FF70971B0DCA50006B602F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FF70961B0DCA50006B602F /* BaseViewController.m */; };
 		26FF709A1B0DCA6A006B602F /* UIViewController+Testing.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FF70991B0DCA6A006B602F /* UIViewController+Testing.m */; };
 /* End PBXBuildFile section */
@@ -48,6 +50,8 @@
 		2631EE441B0D36310067F921 /* OneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
 		2631EE461B0D363F0067F921 /* TwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoViewController.h; sourceTree = "<group>"; };
 		2631EE471B0D363F0067F921 /* TwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoViewController.m; sourceTree = "<group>"; };
+		26635BD71B0FB54200884CFF /* funnydog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = funnydog.jpg; sourceTree = "<group>"; };
+		26635BD81B0FB54200884CFF /* funnycat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = funnycat.jpg; sourceTree = "<group>"; };
 		26FF70951B0DCA50006B602F /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		26FF70961B0DCA50006B602F /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		26FF70981B0DCA6A006B602F /* UIViewController+Testing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Testing.h"; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 		2631EE1C1B0D00E10067F921 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				26635BD61B0FB52800884CFF /* Assets */,
 				2631EE211B0D00E10067F921 /* AppDelegate.h */,
 				2631EE221B0D00E10067F921 /* AppDelegate.m */,
 				2631EE271B0D00E10067F921 /* Main.storyboard */,
@@ -137,6 +142,15 @@
 				2631EE381B0D00E10067F921 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		26635BD61B0FB52800884CFF /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				26635BD71B0FB54200884CFF /* funnydog.jpg */,
+				26635BD81B0FB54200884CFF /* funnycat.jpg */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,8 +234,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2631EE291B0D00E10067F921 /* Main.storyboard in Resources */,
+				26635BD91B0FB54200884CFF /* funnydog.jpg in Resources */,
 				2631EE2E1B0D00E10067F921 /* LaunchScreen.xib in Resources */,
 				2631EE2B1B0D00E10067F921 /* Images.xcassets in Resources */,
+				26635BDA1B0FB54200884CFF /* funnycat.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +327,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -354,6 +371,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -398,6 +416,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -418,6 +437,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				INFOPLIST_FILE = NavigationTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.acme.app.$(PRODUCT_NAME:rfc1034identifier)";
