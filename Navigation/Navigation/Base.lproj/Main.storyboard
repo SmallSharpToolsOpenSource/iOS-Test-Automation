@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3d0-nS-Ver">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3d0-nS-Ver">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Home-->
@@ -17,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hg0-Ia-sbb">
-                                <rect key="frame" x="258" y="277" width="84" height="46"/>
+                                <rect key="frame" x="234" y="277" width="132" height="46"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v85-xt-GaO">
                                         <rect key="frame" x="46" y="8" width="30" height="30"/>
@@ -37,15 +38,26 @@
                                             <segue destination="Wsq-dD-ROt" kind="show" identifier="HomeToOne" id="nyG-Ee-iO3"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U0u-4K-rbe">
+                                        <rect key="frame" x="84" y="8" width="40" height="30"/>
+                                        <state key="normal" title="Three">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="3GV-zX-sU8" kind="show" identifier="HomeToThree" id="stE-gF-jNV"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="v85-xt-GaO" secondAttribute="trailing" constant="8" id="DoK-dp-7Ev"/>
                                     <constraint firstItem="v85-xt-GaO" firstAttribute="centerY" secondItem="Xjj-pn-6OO" secondAttribute="centerY" id="O6l-ah-FuP"/>
+                                    <constraint firstAttribute="trailing" secondItem="U0u-4K-rbe" secondAttribute="trailing" constant="8" id="Pdm-Aa-EQz"/>
                                     <constraint firstItem="Xjj-pn-6OO" firstAttribute="top" secondItem="Hg0-Ia-sbb" secondAttribute="top" constant="8" id="dWh-sa-ZYk"/>
                                     <constraint firstAttribute="bottom" secondItem="Xjj-pn-6OO" secondAttribute="bottom" constant="8" id="fYK-vX-hjx"/>
                                     <constraint firstItem="Xjj-pn-6OO" firstAttribute="leading" secondItem="Hg0-Ia-sbb" secondAttribute="leading" constant="8" id="hsP-BP-EwD"/>
+                                    <constraint firstItem="U0u-4K-rbe" firstAttribute="centerY" secondItem="v85-xt-GaO" secondAttribute="centerY" id="jdM-IP-4OK"/>
                                     <constraint firstItem="v85-xt-GaO" firstAttribute="leading" secondItem="Xjj-pn-6OO" secondAttribute="trailing" constant="8" id="krT-0p-5dk"/>
+                                    <constraint firstItem="U0u-4K-rbe" firstAttribute="leading" secondItem="v85-xt-GaO" secondAttribute="trailing" constant="8" id="zQr-xN-pV0"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -63,6 +75,41 @@
             </objects>
             <point key="canvasLocation" x="1117" y="429"/>
         </scene>
+        <!--Three-->
+        <scene sceneID="OkF-c9-Iez">
+            <objects>
+                <viewController id="3GV-zX-sU8" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VCU-VZ-W2I"/>
+                        <viewControllerLayoutGuide type="bottom" id="BUp-OX-sEi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WlD-uG-8k9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1J-VH-kkI">
+                                <rect key="frame" x="268" y="285" width="65" height="30"/>
+                                <state key="normal" title="Go Home">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="nZD-Hn-IqR" kind="unwind" unwindAction="returnHome:" id="zdH-mk-y3U"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="L1J-VH-kkI" secondAttribute="centerX" id="nNp-Ii-7s1"/>
+                            <constraint firstAttribute="centerY" secondItem="L1J-VH-kkI" secondAttribute="centerY" id="yFl-1N-5Q5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Three" id="3f2-4N-DrO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZDC-6l-kQy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="nZD-Hn-IqR" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1875" y="982"/>
+        </scene>
         <!--One-->
         <scene sceneID="yCl-5z-cQz">
             <objects>
@@ -76,7 +123,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WF2-Rz-0AJ">
-                                <rect key="frame" x="267" y="285" width="66" height="30"/>
+                                <rect key="frame" x="268" y="285" width="65" height="30"/>
                                 <state key="normal" title="Go Home">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -99,7 +146,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nF4-jj-diQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="W9s-EO-6kG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1875" y="107"/>
+            <point key="canvasLocation" x="1875" y="-397"/>
         </scene>
         <!--Two-->
         <scene sceneID="jkB-0D-h1o">
@@ -114,7 +161,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lU5-0c-tvb">
-                                <rect key="frame" x="267" y="285" width="66" height="30"/>
+                                <rect key="frame" x="268" y="285" width="65" height="30"/>
                                 <state key="normal" title="Go Home">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -137,7 +184,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yqa-yc-AMT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="uQ4-L2-b1R" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1875" y="806"/>
+            <point key="canvasLocation" x="1875" y="302"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sep-s1-rZR">
